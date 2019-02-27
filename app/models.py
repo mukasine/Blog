@@ -37,4 +37,5 @@ class User(UserMixin,db.Model):
 class Pitches(db.Model):
     __tablename__ = 'pitches'   
 id = db.Column(db.Integer,primary_key = True)
-pitches_title = db.Column(db.String)
+pitches_title = db.Column(db.String)pitch_content = db.Column(db.String(1000))
+pitch_content = db.Column(db.String(1000))
