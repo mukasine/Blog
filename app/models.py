@@ -34,6 +34,7 @@ class User(UserMixin,db.Model):
             return check_password_hash(self.pass_secure,password)
     def __repr__(self):
         return f'User {self.username}'
-class Pitch(db.Model):
+class Pitches(db.Model):
     __tablename__ = 'pitches'   
 id = db.Column(db.Integer,primary_key = True)
+pitches_title = db.Column(db.String)
