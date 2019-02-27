@@ -39,3 +39,4 @@ class Pitches(db.Model):
 id = db.Column(db.Integer,primary_key = True)
 pitches_title = db.Column(db.String)pitch_content = db.Column(db.String(1000))
 pitch_content = db.Column(db.String(1000))
+category = db.Column(db.String)
