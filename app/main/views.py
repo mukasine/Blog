@@ -1,10 +1,9 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-# from ..request import get_movies,get_movie,search_movie
-from .forms import PitchForm,UpdateProfile, CommentForm
-from .. import db,photos
 from ..models import User,Pitch,Comment
-from flask_login import login_required, current_user
+from .. import db,photos
+from .forms import UpdateProfile,PitchForm,CommentForm
+from flask_login import login_required,current_user
 import datetime
 
 # Views
@@ -70,10 +69,9 @@ def update_pic(uname):
 @login_required
 def new_pitch():
     pitch_form = PitchForm()
-    print(current_user)
     if pitch_form.validate_on_submit():
         title = pitch_form.title.data
-        pitch = pitch_form.review.data
+        pitch = pitch_form.text.data
         category = pitch_form.category.data
 
         # Updated pitch instance
@@ -149,4 +147,3 @@ def user_pitches(uname):
     user_joined = user.date_joined.strftime('%b %d, %Y')
 
     return render_template("profile/pitches.html", user=user,pitches=pitches,pitches_count=pitches_count,date = user_joined)
-
