@@ -12,12 +12,13 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255),index = True)
     # role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    firstname = db.column(db.string(255))
+    firstname = db.column(db.String(255))
     lastname = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
+    date_joined=db.Column(db.DateTime,default=datetime.utcnow)
     pitches = db.relationship('Pitch',backref = 'user', lazy = 'dynamic')
     comments = db.relationship('Comment', backref = 'user', lazy = 'dynamic')
 
@@ -34,18 +35,19 @@ class User(UserMixin,db.Model):
             return check_password_hash(self.pass_secure,password)
     def __repr__(self):
         return f'User {self.username}'
-class Pitches(db.Model):
+class Pitch(db.Model):
     __tablename__ = 'pitches'   
-id = db.Column(db.Integer,primary_key = True)
-pitches_title = db.Column(db.String)pitch_content = db.Column(db.String(1000))
-pitch_content = db.Column(db.String(1000))
-category = db.Column(db.String)
-posted = db.Column(db.DateTime,default=datetime.utcnow)
-user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
-likes = db.Column(db.Integer)
-dislikes = db.Column(db.Integer)
-comments = db.relationship('Comment',backref =  'pitch_id',lazy = "dynamic")
-def save_pitch(self):
+    id = db.Column(db.Integer,primary_key = True)
+    pitch_title = db.Column(db.String)
+    pitch_content = db.Column(db.String(1000))
+    category = db.Column(db.String)
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    likes = db.Column(db.Integer)
+    dislikes = db.Column(db.Integer)
+    comments = db.relationship('Comment',backref =  'pitch_id',lazy = "dynamic")
+    
+    def save_pitch(self):
         db.session.add(self)
         db.session.commit()
 

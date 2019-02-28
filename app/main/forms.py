@@ -1,17 +1,16 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,TextAreaField,SubmitField
-from wtforms.validators import Required,Email
+from wtforms import StringField,TextAreaField,SubmitField, SelectField
+from wtforms.validators import Required
 
-class ReviewForm(FlaskForm):
+class PitchForm(FlaskForm):
 
-    title = StringField('Review title',validators=[Required()])
-    review = TextAreaField('Movie review', validators=[Required()])
+    title = StringField('Pitch title',validators=[Required()])
+    review = TextAreaField('Text', validators=[Required()])
+    category = SelectField('Type', choices= [('interview', 'Interview pitch'), ('product', 'Product pitch'), ('promotion', 'Promotion pitch')], validators= [Required()])
     submit = SubmitField('Submit')
 
-class LoginForm(FlaskForm):
-    email = StringField('Your Email Address',validators=[Required(),Email()])
-    password = PasswordField('Password',validators =[Required()])
-    remember = BooleanField('Remember me')
+class CommentForm(FlaskForm):
+    text= TextAreaField('Leave a comment',validators =[Required()])
     submit = SubmitField('Sign In')
  
 class UpdateProfile(FlaskForm):
