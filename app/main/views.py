@@ -26,14 +26,14 @@ def index():
 
 @main.route('/user/<uname>')
 def profile(uname):
-    user = User.query.filter_by(username = uname).first()
+    user = User.query.filter_by(id = current_user.id).first()
     pitches_count = Pitch.count_pitches(uname)
-    user_joined = user.date_joined.strftime('%b %d, %Y')
-
+    # user_joined = user.date_joined.strftime('%b %d, %Y')
+    print(current_user.id)
     if user is None:
         abort(404)
 
-    return render_template("profile/profile.html", user = user,pitches = pitches_count,date = user_joined)
+    return render_template("profile/profile.html", user = user,pitches = pitches_count)
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
@@ -144,6 +144,7 @@ def user_pitches(uname):
     user = User.query.filter_by(username=uname).first()
     pitches = Pitch.query.filter_by(user_id = user.id).all()
     pitches_count = Pitch.count_pitches(uname)
-    user_joined = user.date_joined.strftime('%b %d, %Y')
+    # user_joined = User.date_joined.strftime('%b %d, %Y')
+    print(user)
 
-    return render_template("profile/pitches.html", user=user,pitches=pitches,pitches_count=pitches_count,date = user_joined)
+    return render_template("profile/pitches.html", user=user,pitches=pitches,pitches_count=pitches_count)
