@@ -5,7 +5,7 @@ from .. import db,photos
 from .forms import UpdateProfile,blogForm,CommentForm
 from flask_login import login_required,current_user
 import datetime
-
+from ..request import get_quote
 # Views
 @main.route('/')
 def index():
