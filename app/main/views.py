@@ -87,22 +87,21 @@ def new_blog():
 @main.route('/blogs/interview_blogs')
 def interview_blogs():
 
-    blogs = blog.get_
-    blogs('interview')
+    blogs = Blog.get_blogs('interview')
 
     return render_template("interview_blogs.html", blogs = blogs)
 
 @main.route('/blogs/product_blogs')
 def product_blogs():
 
-    blogs = blogs.get_blogs('product')
+    blogs = Blog.get_blogs('product')
 
     return render_template("product_blogs.html", blogs = blogs)
 
 @main.route('/blogs/promotion_blogs')
 def promotion_blogs():
 
-    blogs = blogs.get_blogs('promotion')
+    blogs = Blog.get_blogs('promotion')
 
     return render_template("promotion_blogs.html", blogs = blogs)
 
