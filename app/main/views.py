@@ -75,7 +75,7 @@ def new_blog():
         category = blog_form.category.data
 
         # Updated blog instance
-        new_blog = blog(blog_title=title,blog_content=blog,category=category,user=current_user,likes=0,dislikes=0)
+        new_blog = Blog(blog_title=title,blog_content=blog,category=category,user=current_user,likes=0,dislikes=0)
 
         # Save blog method
         new_blog.save_blog()
