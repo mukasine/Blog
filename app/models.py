@@ -100,4 +100,14 @@ class Subscriber(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(20))
     email = db.Column(db.String(), unique = True)
-          
+
+class Quote():
+    '''
+    class that creates the quote instance
+    '''
+
+    def __init__(self,id,author,quote):
+        self.id =  id
+        self.author = author
+        self.quote = quote
+    

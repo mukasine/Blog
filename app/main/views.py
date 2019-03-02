@@ -13,7 +13,7 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-
+    quote=get_quote()
     title = 'Home - Welcome to Perfect blog'
 
     # Getting reviews by category
@@ -22,7 +22,7 @@ def index():
     promotion = Blog.get_blogs('promotion')
 
 
-    return render_template('index.html',title = title, interview = interview_blogs, product = product_blogs, promotion = promotion_blogs)
+    return render_template('index.html',title = title, interview = interview_blogs, product = product_blogs, promotion = promotion_blogs,quote=quote)
 
 @main.route('/user/<uname>')
 def profile(uname):
