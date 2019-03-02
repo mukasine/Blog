@@ -64,7 +64,7 @@ class Blog(db.Model):
 
     @classmethod
     def get_blog(cls,id):
-        blog = blog.query.filter_by(id=id).first()
+        blog = Blog.query.filter_by(id=id).first()
 
         return blog
 
@@ -92,8 +92,8 @@ class Comment(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_comments(cls,pitch):
-        comments = Comment.query.filter_by(blog_id=blog).all()
+    def get_comments(cls,blog):
+        comments = Comment.query.filter_by(blog=blog).all()
         return comments
 class Subscriber(db.Model):
     __tablename__ = 'subscribers'

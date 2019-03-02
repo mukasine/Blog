@@ -13,14 +13,14 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    quote=get_quote()
+ 
     title = 'Home - Welcome to Perfect blog'
 
     # Getting reviews by category
     interview = Blog.get_blogs('interview')
     product = Blog.get_blogs('product')
     promotion = Blog.get_blogs('promotion')
-
+    quote=get_quote()
 
     return render_template('index.html',title = title, interview = interview_blogs, product = product_blogs, promotion = promotion_blogs,quote=quote)
 
@@ -30,6 +30,7 @@ def profile(uname):
     blogs_count = blog.count_blogs(uname)
     # user_joined = user.date_joined.strftime('%b %d, %Y')
     print(current_user.id)
+
     if user is None:
         abort(404)
 
@@ -107,7 +108,7 @@ def promotion_blogs():
 
 @main.route('/blog/<int:id>', methods = ['GET','POST'])
 def blog(id):
-    blog = blog.get_blog(id)
+    blog = Blog.get_blog(id)
     posted_date = blog.posted.strftime('%b %d, %Y')
 
     if request.args.get("like"):
@@ -135,7 +136,7 @@ def blog(id):
         new_comment.save_comment()
 
 
-    comments = Comment.get_comments(blog)
+    comments = Comment.get_comments(id)
 
     return render_template("blog.html", blog = blog, comment_form = comment_form, comments = comments, date = posted_date)
 
