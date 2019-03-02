@@ -1,5 +1,4 @@
-#!/home/divine/Documents/Watchlist/virtual/bin/python2
-
+#!/home/wecode/Desktop/blog/virtual/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

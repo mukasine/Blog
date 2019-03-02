@@ -2,13 +2,14 @@
 {% import 'macros.html' as macro %}
 
 {%block content%}
-<div class="jumbotron text-center" >
-    <h1>Product blog</h1>
+
+<div class="jumbotron text-center">
+    <h1>Interview blogs</h1>
 </div>
 <div class="container" style="font-family: 'Indie+Flower', cursive;">
     <hr>
     <div class="row">
-        {{macro.displayblogs(blogs)}}
+        {{macro.display(blogs)}}
     </div>
 </div>
 {%endblock%}

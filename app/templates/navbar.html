@@ -7,14 +7,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/" class="navbar-brand"> One Minute Pitch </a>
+            <a href="/" class="navbar-brand"> One Minute blog </a>
         </div>
         <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
-                    <li><a href="{{url_for('main.interview_pitches')}}">Interview</a></li>
-                    <li><a href="{{url_for('main.product_pitches')}}">Product</a></li>
-                    <li><a href="{{url_for('main.promotion_pitches')}}">Promotion</a></li>
+                    <li><a href="{{url_for('main.interview_blogs')}}">Interview</a></li>
+                    <li><a href="{{url_for('main.product_blogs')}}">Product</a></li>
+                    <li><a href="{{url_for('main.promotion_blogs')}}">Promotion</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -22,7 +22,7 @@
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{current_user.username| capitalize}} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
-                            <li><a href="{{url_for('main.user_pitches',uname=current_user.username)}}">My Pitches</a></li>
+                            <li><a href="{{url_for('main.user_blogs',uname=current_user.username)}}">My blogs</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
                         </ul>
