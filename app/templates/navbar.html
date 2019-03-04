@@ -7,24 +7,26 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/" class="navbar-brand"> One Minute blog </a>
+            <a href="/" class="navbar-brand"> Blog App</a>
         </div>
         <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
-                    <li><a href="{{url_for('main.interview_blogs')}}">Interview</a></li>
-                    <li><a href="{{url_for('main.product_blogs')}}">Product</a></li>
-                    <li><a href="{{url_for('main.promotion_blogs')}}">Promotion</a></li>
+                    <li><a href="{{url_for('main.all_blogs')}}">Posts</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_authenticated %}
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{current_user.username| capitalize}} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
-                            <li><a href="{{url_for('main.user_blogs',uname=current_user.username)}}">My blogs</a></li>
+                            {% if current_user.role_id == 1 %}
+                            <li><a href="{{url_for('main.new_blog')}}">Create post</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                            {%else%}
+                            <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                            {%endif%}
+
                         </ul>
                     </li>
                     {% else %}

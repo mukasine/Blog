@@ -1,30 +1,39 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
 {% import "bootstrap/wtf.html" as wtf %}
+
+{%block styles%}
+    {{ super() }}
+{%endblock%}
 <!-- Content block -->
 {%block content%}
-<div class="container" style="font-family: 'Indie Flower', cursive;">
+<div class="container">
     <div class="row">
-        <h3>{{blog.blog_title}}</h3>
+        <h3>{{blog.title}}</h3>
         <hr>
-        <p>{{blog.blog_content}}</p>
+        <p>{{blog.text}}</p>
         <span>
-        <p>Posted on {{date}} by {{blog.user.username| capitalize}}</p>
-        <a href="/blog/{{blog.id}}?like=1">
-            <i class="far fa-thumbs-up"></i>
-        </a>{{blog.likes}} <a href="/blog/{{blog.id}}?dislike=1">
-            <i class="far fa-thumbs-down"></i>
-        </a>{{blog.dislikes}}</span>
-
+        <p>Posted on {{blog.posted.strftime('%Y-%m-%d')}}</p>
+        {% if current_user.is_authenticated and current_user.role_id == 1%}
+            <a href="{{url_for('main.delete_blog',id = blog.id)}}" class="btn btn-danger btn-sm">Delete post</a>
+            <a href="/blog/update/{{blog.id}}" class="btn btn-info btn-sm">Update post</a>
+        {%endif%}
     </div>
     <div class="row">
         <h4>Comments</h4>
         <hr>
         {% if current_user.is_authenticated %}
-            {{ wtf.quick_form(comment_form) }}
+            {{ wtf.quick_form(form) }}
         {%endif%}
-        {{macro.displayComments(comments)}}
+        {%for comment in comments%}
+            <div class="col-md-12">
+                <h5>{{comment.user.username}}</h5>
+                <p>{{comment.comment}}</p>
+                
+                    <a href="{{url_for('main.delete_comment',id = comment.id,blog_id = comment.id)}}" class="btn btn-danger btn-sm">Delete comment</a>
+                
+            </div>
+        {%endfor%}
     </div>
-
 </div>
 {%endblock%}

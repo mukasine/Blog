@@ -39,3 +39,13 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for("main.index"))
+
+# @main.route('/delete/comment/<int:id>', methods = ['GET', 'POST'])
+# @login_required
+# def delete_comment(id):
+#     comment=Comment.query.filter_by(id=id).first()
+ 
+
+#     if comment is not None:
+#        comment.delete_comment()
+#        return redirect(url_for('main.index'))
